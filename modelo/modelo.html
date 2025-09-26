@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor 3D</title>
+  <link rel="stylesheet" href="modelo.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.3.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <div id="loader" role="status" aria-live="polite">
+    <div id="spinner" class="spinner" aria-hidden="true"></div>
+    <div id="loaderText" class="loader-text">Cargando...</div>
+    <button id="retryBtn" class="retry-btn" aria-hidden="true">Reintentar</button>
+  </div>
+
+  <model-viewer id="viewer"
+                src="assets/blue_miyu.glb"
+                alt="Modelo 3D"
+                camera-controls
+                auto-rotate
+                exposure="1"
+                interaction-prompt="auto"
+                reveal="auto">
+  </model-viewer>
+
+  <div class="menu" id="menu">
+    <button id="rotateToggle" aria-pressed="true">Detener rotación</button>
+    <button id="resetCam">Reiniciar cámara</button>
+    <button id="fullscreenToggle">Pantalla completa</button>
+  </div>
+
+  <script defer src="modelo.js"></script>
+</body>
+</html>

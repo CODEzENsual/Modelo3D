@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0f1724">
+  <title>Visor 3D</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="assets/blue_miyu.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.3.0/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 class="title">Visor 3D</h1>
+      <div class="top-actions">
+        <a href="modelo/modelo.html" class="icon" aria-label="Abrir vista del modelo" title="Abrir modelo"></a>
+        <!--<button id="btnTheme" class="icon" aria-label="Cambiar tema"></button>
+        
+        <button id="btnFullscreen" class="icon" aria-label="Pantalla completa"></button>-->
+      </div>
+    </header>
+
+    <main class="viewer-area">
+      <div class="viewer-wrap" id="viewerWrap">
+        <div class="loader" id="loader">
+          <div class="spinner"></div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <div id="progressText" class="progress-text">Cargando 0%</div>
+        </div>
+
+        <model-viewer id="viewer"
+                      src="assets/blue_miyu.glb"
+                      alt="Modelo 3D"
+                      camera-controls
+                      auto-rotate
+                      rotation-per-second="0.5"
+                      interaction-prompt="auto"
+                      exposure="1"
+                      shadow-intensity="1"
+                      environment-image="neutral"
+                      ar
+                      ar-modes="webxr scene-viewer quick-look"
+                      crossorigin="anonymous"
+                      style="width:100%;height:100%;">
+          <div slot="fallback">Tu navegador no soporta este visor 3D.</div>
+        </model-viewer>
+
+        <div class="hud">
+          <button id="btnRotate" class="btn">Rotar</button>
+          <button id="btnReset" class="btn">Reset cámara</button>
+          <select id="speed" class="select" aria-label="Velocidad de rotación">
+            <option value="0.25">Lento</option>
+            <option value="0.5" selected>Normal</option>
+            <option value="1">Rápido</option>
+          </select>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <small>Visor 3D · Compatible móvil · AR (si está disponible)</small>
+    </footer>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
