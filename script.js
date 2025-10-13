@@ -7,9 +7,11 @@ const btnReset = document.getElementById('btnReset');
 const speed = document.getElementById('speed');
 const btnFullscreen = document.getElementById('btnFullscreen');
 const btnTheme = document.getElementById('btnTheme');
+
 let rotating = false;
 let initialOrbit = null;
 let userInteracting = false;
+
 function setTheme(mode){
   document.documentElement.setAttribute('data-theme', mode);
   localStorage.setItem('theme-mode', mode);
