@@ -28,11 +28,7 @@ class App {
 
     this.controlsManager = new ControlsManager(
       this.viewerManager,
-      ELEMENTS.btnRotate,
-      ELEMENTS.btnReset,
-      ELEMENTS.speed,
-      ELEMENTS.btnFullscreen,
-      ELEMENTS.viewerWrap
+      ELEMENTS
     );
 
     this.interactionManager = new InteractionManager(
@@ -41,6 +37,19 @@ class App {
     );
 
     this.setupAccessibility();
+    this.registerServiceWorker();
+  }
+
+  registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(registration => {
+          console.log('ServiceWorker registration successful');
+        }, err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
   }
 
   setupAccessibility() {

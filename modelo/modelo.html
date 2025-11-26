@@ -28,9 +28,9 @@
       Reintentar carga
     </button>
   </div>
-
+<!--///IN-->
   <model-viewer id="viewer"
-                src="../assets/blue_miyu.glb"
+                src="assets/steam_machine.glb"
                 alt="Vista 3D"
                 camera-controls
                 auto-rotate
@@ -46,7 +46,25 @@
                 crossorigin="anonymous"
                 loading="eager">
   </model-viewer>
-
+///OUT<!--
+  <model-viewer id="viewer"
+                src="../assets/steam_machine.glb"
+                alt="Vista 3D"
+                camera-controls
+                auto-rotate
+                rotation-per-second="0.5"
+                exposure="1.2"
+                shadow-intensity="1.2"
+                shadow-softness="0.8"
+                interaction-prompt="auto"
+                reveal="auto"
+                environment-image="neutral"
+                ar
+                ar-modes="webxr scene-viewer quick-look"
+                crossorigin="anonymous"
+                loading="eager">
+  </model-viewer>
+-->
   <div class="menu" id="menu">
     <button id="rotateToggle" class="menu-btn" aria-pressed="true" title="Alternar rotación">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -73,5 +91,6 @@
   <script type="module" src="js/modelo-viewer.js"></script>
   <script type="module" src="js/modelo-controls.js"></script>
   <script type="module" src="js/modelo-main.js"></script>
+  <script type="module" src="js/models.js"></script>
 </body>
 </html>

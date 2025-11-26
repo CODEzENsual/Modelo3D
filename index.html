@@ -7,7 +7,9 @@
   <meta name="description" content="Visor 3D interactivo con tecnología WebGL">
   <title>Visor 3D</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preload" href="assets/blue_miyu.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <link rel="preload" href="assets/windyD.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
@@ -38,6 +40,27 @@
         <h1 class="title">V3D Interactivo</h1>
       </div>
       <div class="top-actions">
+        <input type="file" id="fileInput" accept=".glb,.gltf" style="display: none;">
+        <button id="btnUpload" class="icon-btn" aria-label="Cargar modelo" title="Cargar modelo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+        </button>
+        <button id="btnShare" class="icon-btn" aria-label="Compartir" title="Compartir">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+        <button id="btnAI" class="icon-btn" aria-label="Analizar con IA" title="Analizar con IA">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </button>
         <a href="modelo/modelo.html" class="icon-btn" aria-label="Abrir vista del modelo" title="Vista avanzada">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
@@ -71,7 +94,7 @@
         </div>
 
         <model-viewer id="viewer"
-                      src="assets/blue_miyu.glb"
+                      src="assets/windyD.glb"
                       alt="V3D Interactivo"
                       camera-controls
                       auto-rotate
@@ -84,13 +107,20 @@
                       ar
                       ar-modes="webxr scene-viewer quick-look"
                       crossorigin="anonymous"
-                      loading="eager">
+                      loading="lazy">
           <div slot="fallback" class="fallback-message">
             <p>Tu navegador no soporta visualización 3D WebGL</p>
           </div>
         </model-viewer>
 
         <div class="hud">
+          <button id="btnVR" class="btn-secondary" style="display: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7z"/>
+              <path d="M8 12h8"/>
+            </svg>
+            <span>VR</span>
+          </button>
           <button id="btnRotate" class="btn-primary" aria-pressed="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>

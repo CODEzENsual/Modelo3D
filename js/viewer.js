@@ -8,6 +8,7 @@ export class ViewerManager {
     this.progressText = progressText;
     this.rotating = false;
     this.initialOrbit = null;
+    this.rotationSpeed = Number.isFinite(CONFIG.viewer.rotationSpeed) ? CONFIG.viewer.rotationSpeed : 0.5;
     this.setupEventListeners();
   }
 
@@ -21,6 +22,7 @@ export class ViewerManager {
     this.initialOrbit = this.viewer.cameraOrbit || '0deg 75deg 2.5m';
     this.hideLoader();
     this.rotating = this.viewer.autoRotate || false;
+    this.applyRotationSpeed();
   }
 
   onProgress(e) {
@@ -72,8 +74,8 @@ export class ViewerManager {
   setRotationSpeed(speed) {
     const value = parseFloat(speed);
     if (!Number.isNaN(value)) {
-      this.viewer.rotationPerSecond = value;
-      this.viewer.setAttribute('rotation-per-second', String(value));
+      this.rotationSpeed = value;
+      this.applyRotationSpeed();
     }
   }
 
@@ -83,10 +85,25 @@ export class ViewerManager {
     
     if (this.rotating) {
       this.viewer.setAttribute('auto-rotate', '');
+      this.applyRotationSpeed();
     } else {
       this.viewer.removeAttribute('auto-rotate');
     }
     
     return this.rotating;
+  }
+
+  applyRotationSpeed() {
+    if (!this.viewer) return;
+    const value = Number.isFinite(this.rotationSpeed) ? this.rotationSpeed : CONFIG.viewer.rotationSpeed;
+    this.viewer.rotationPerSecond = value;
+    this.viewer.setAttribute('rotation-per-second', String(value));
+  }
+
+  loadModel(url) {
+    if (!url) return;
+    this.loader.classList.remove('hidden');
+    if (this.progressText) this.progressText.textContent = 'Cargando nuevo modelo...';
+    this.viewer.src = url;
   }
 }

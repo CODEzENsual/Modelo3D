@@ -38,6 +38,7 @@ export class InteractionManager {
     this.interactionTimeout = setTimeout(() => {
       if (this.viewerManager.rotating && !this.userInteracting) {
         this.viewer.autoRotate = true;
+        this.viewerManager.applyRotationSpeed();
         if (!this.viewer.hasAttribute('auto-rotate')) {
           this.viewer.setAttribute('auto-rotate', '');
         }

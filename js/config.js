@@ -37,7 +37,12 @@ export const ELEMENTS = {
   speed: null,
   btnFullscreen: null,
   btnTheme: null,
-  viewerWrap: null
+  viewerWrap: null,
+  fileInput: null,
+  btnUpload: null,
+  btnShare: null,
+  btnAI: null,
+  btnVR: null
 };
 
 export function initializeElements() {
@@ -51,4 +56,9 @@ export function initializeElements() {
   ELEMENTS.btnFullscreen = document.getElementById('btnFullscreen');
   ELEMENTS.btnTheme = document.getElementById('btnTheme');
   ELEMENTS.viewerWrap = document.getElementById('viewerWrap');
+  ELEMENTS.fileInput = document.getElementById('fileInput');
+  ELEMENTS.btnUpload = document.getElementById('btnUpload');
+  ELEMENTS.btnShare = document.getElementById('btnShare');
+  ELEMENTS.btnAI = document.getElementById('btnAI');
+  ELEMENTS.btnVR = document.getElementById('btnVR');
 }
